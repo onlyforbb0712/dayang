@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vintage Cassette Playlist</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #1a1a1a;
+      font-family: 'Courier New', monospace;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+    }
+
+    .cassette-container {
+      position: relative;
+      width: 400px;
+    }
+
+    .cassette-img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .reel {
+      position: absolute;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      top: 84px;
+      background: radial-gradient(#666 30%, transparent 31%);
+      animation: none;
+      pointer-events: none;
+    }
+
+    .reel.left {
+      left: 85px;
+    }
+
+    .reel.right {
+      right: 85px;
+    }
+
+    .rotating {
+      animation: spin 3s linear infinite;
+    }
+
+    @keyframes spin {
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .controls {
+      position: absolute;
+      bottom: 20px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    button {
+      background: transparent;
+      border: 1px solid #fff;
+      color: #fff;
+      padding: 6px 10px;
+      font-family: inherit;
+      font-size: 14px;
+      cursor: pointer;
+      backdrop-filter: blur(4px);
+      transition: background 0.2s ease;
+    }
+
+    button:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
+    .song-title {
+      margin-top: 20px;
+      font-size: 1rem;
+      color: #aaa;
+      text-align: center;
+    }
+
+    audio {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cassette-container">
+    <img src="cassette.png" alt="Cassette" class="cassette-img" />
+    
+    <!-- Fake reels that spin -->
+    <div class="reel left" id="leftReel"></div>
+    <div class="reel right" id="rightReel"></div>
+
+    <!-- Transparent buttons over the cassette -->
+    <div class="controls">
+      <button onclick="prevSong()">⏮️</button>
+      <button onclick="playPause()">▶️ / ⏸️</button>
+      <button onclick="nextSong()">⏭️</button>
+    </div>
+  </div>
+
+  <div class="song-title" id="songTitle">Loading...</div>
+
+  <audio id="audioPlayer" src=""></audio>
+
+  <script>
+    const songs = [
+      { name: "Old Tape Echo", file: "song1.mp3" },
+      { name: "Basement Beats", file: "song2.mp3" },
+      { name: "Mixtape Mood", file: "song3.mp3" }
+    ];
+
+    let currentSong = 0;
+    const audio = document.getElementById("audioPlayer");
+    const title = document.getElementById("songTitle");
+    const leftReel = document.getElementById("leftReel");
+    const rightReel = document.getElementById("rightReel");
+
+    function loadSong(index) {
+      audio.src = songs[index].file;
+      title.textContent = "Now Playing: " + songs[index].name;
+      audio.load();
+    }
+
+    function playPause() {
+      if (audio.paused) {
+        audio.play();
+      } else {
+        audio.pause();
+      }
+    }
+
+    function nextSong() {
+      currentSong = (currentSong + 1) % songs.length;
+      loadSong(currentSong);
+      audio.play();
+    }
+
+    function prevSong() {
+      currentSong = (currentSong - 1 + songs.length) % songs.length;
+      loadSong(currentSong);
+      audio.play();
+    }
+
+    audio.onplay = () => {
+      leftReel.classList.add("rotating");
+      rightReel.classList.add("rotating");
+    };
+
+    audio.onpause = () => {
+      leftReel.classList.remove("rotating");
+      rightReel.classList.remove("rotating");
+    };
+
+    window.onload = () => {
+      loadSong(currentSong);
+    };
+  </script>
+</body>
+</html>io.paused) {
+        audio.play();
+      } else {
+        audio.pause();
+      }
+    }
+
+    function nextSong() {
+      currentSong = (currentSong + 1) % songs.length;
+      loadSong(currentSong);
+      audio.play();
+    }
+
+    function prevSong() {
+      currentSong = (currentSong - 1 + songs.length) % songs.length;
+      loadSong(currentSong);
+      audio.play();
+    }
+
+    window.onload = () => {
+      loadSong(currentSong);
+    };
+  </script>
+</body>
+</html>c/bJjGk5Y9/c6361128f128f9249661aa3d1d8111bf.jpg" alt="Jolo - Bassist" class="w-full h-60 object-cover rounded-lg mb-4" />
+        <h4 class="text-xl font-semibold">Jolo - Bassist</h4>
+      </div>
+      <div class="bg-gray-900 rounded-xl shadow-lg p-4">
+        <img src="https://i.postimg.cc/qMGGR8LF/d2cf595586a26ea859638c10958422cb.jpg" alt="Juno - Main Guitarist" class="w-full h-60 object-cover rounded-lg mb-4" />
+        <h4 class="text-xl font-semibold">Juno - Main Guitarist</h4>
+      </div>
+      <div class="bg-gray-900 rounded-xl shadow-lg p-4">
+        <img src="https://i.postimg.cc/0ycZtpKS/1d317487dc84d1d1a862dd90c2689540.jpg" alt="Kurt - Lead Guitarist" class="w-full h-60 object-cover rounded-lg mb-4" />
+        <h4 class="text-xl font-semibold">Kurt - Lead Guitarist</h4>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="p-6 md:p-12 bg-gray-800">
+  <div class="max-w-4xl mx-auto text-center">
+    <h3 class="text-3xl md:text-4xl font-bold mb-4">Get in Touch</h3>
+    <p class="text-sm md:text-base">Email: contact@tunogtibok.com</p>
+    <p class="text-sm md:text-base">Instagram: @tunogtibokofficial</p>
+  </div>
+</section>
+
+<footer class="bg-black text-gray-500 text-center py-4 md:py-6 text-xs md:text-sm">
+  &copy; 2025 Tunog-Tibok. All rights reserved.
+</footer>
+
+  </body>
+</html>
